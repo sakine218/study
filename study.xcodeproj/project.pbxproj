@@ -15,6 +15,14 @@
 		8182FAED1EB9CD95006B19CA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8182FAEB1EB9CD95006B19CA /* LaunchScreen.storyboard */; };
 		8182FAF81EB9CD95006B19CA /* studyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8182FAF71EB9CD95006B19CA /* studyTests.swift */; };
 		8182FB031EB9CD95006B19CA /* studyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8182FB021EB9CD95006B19CA /* studyUITests.swift */; };
+		8182FB111EBA0D30006B19CA /* GraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8182FB101EBA0D30006B19CA /* GraphViewController.swift */; };
+		8182FB131EBA0D49006B19CA /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8182FB121EBA0D49006B19CA /* TimerViewController.swift */; };
+		8182FB151EBA0D64006B19CA /* SubjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8182FB141EBA0D64006B19CA /* SubjectViewController.swift */; };
+		8182FB171EBA0D73006B19CA /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8182FB161EBA0D73006B19CA /* SettingViewController.swift */; };
+		8182FB191EBA95CC006B19CA /* SubjectCellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8182FB181EBA95CC006B19CA /* SubjectCellViewController.swift */; };
+		8182FB1B1EBAD3C9006B19CA /* AddSubjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8182FB1A1EBAD3C8006B19CA /* AddSubjectViewController.swift */; };
+		8197DFC21EBC0D6100E48A7A /* CustomSubjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8197DFC01EBC0D6100E48A7A /* CustomSubjectCell.swift */; };
+		8197DFC31EBC0D6100E48A7A /* CustomSubjectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8197DFC11EBC0D6100E48A7A /* CustomSubjectCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +57,14 @@
 		8182FAFE1EB9CD95006B19CA /* studyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = studyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8182FB021EB9CD95006B19CA /* studyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = studyUITests.swift; sourceTree = "<group>"; };
 		8182FB041EB9CD95006B19CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8182FB101EBA0D30006B19CA /* GraphViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphViewController.swift; sourceTree = "<group>"; };
+		8182FB121EBA0D49006B19CA /* TimerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
+		8182FB141EBA0D64006B19CA /* SubjectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubjectViewController.swift; sourceTree = "<group>"; };
+		8182FB161EBA0D73006B19CA /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		8182FB181EBA95CC006B19CA /* SubjectCellViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubjectCellViewController.swift; sourceTree = "<group>"; };
+		8182FB1A1EBAD3C8006B19CA /* AddSubjectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSubjectViewController.swift; sourceTree = "<group>"; };
+		8197DFC01EBC0D6100E48A7A /* CustomSubjectCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSubjectCell.swift; sourceTree = "<group>"; };
+		8197DFC11EBC0D6100E48A7A /* CustomSubjectCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomSubjectCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +117,14 @@
 			children = (
 				8182FADF1EB9CD95006B19CA /* AppDelegate.swift */,
 				8182FAE11EB9CD95006B19CA /* ViewController.swift */,
+				8182FB101EBA0D30006B19CA /* GraphViewController.swift */,
+				8182FB121EBA0D49006B19CA /* TimerViewController.swift */,
+				8182FB141EBA0D64006B19CA /* SubjectViewController.swift */,
+				8182FB161EBA0D73006B19CA /* SettingViewController.swift */,
+				8182FB181EBA95CC006B19CA /* SubjectCellViewController.swift */,
+				8182FB1A1EBAD3C8006B19CA /* AddSubjectViewController.swift */,
+				8197DFC01EBC0D6100E48A7A /* CustomSubjectCell.swift */,
+				8197DFC11EBC0D6100E48A7A /* CustomSubjectCell.xib */,
 				8182FAE31EB9CD95006B19CA /* Main.storyboard */,
 				8182FAE91EB9CD95006B19CA /* Assets.xcassets */,
 				8182FAEB1EB9CD95006B19CA /* LaunchScreen.storyboard */,
@@ -239,6 +263,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8182FAED1EB9CD95006B19CA /* LaunchScreen.storyboard in Resources */,
+				8197DFC31EBC0D6100E48A7A /* CustomSubjectCell.xib in Resources */,
 				8182FAEA1EB9CD95006B19CA /* Assets.xcassets in Resources */,
 				8182FAE51EB9CD95006B19CA /* Main.storyboard in Resources */,
 			);
@@ -265,8 +290,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8182FB131EBA0D49006B19CA /* TimerViewController.swift in Sources */,
+				8182FB191EBA95CC006B19CA /* SubjectCellViewController.swift in Sources */,
+				8182FB151EBA0D64006B19CA /* SubjectViewController.swift in Sources */,
+				8182FB1B1EBAD3C9006B19CA /* AddSubjectViewController.swift in Sources */,
 				8182FAE81EB9CD95006B19CA /* study.xcdatamodeld in Sources */,
+				8182FB111EBA0D30006B19CA /* GraphViewController.swift in Sources */,
 				8182FAE21EB9CD95006B19CA /* ViewController.swift in Sources */,
+				8197DFC21EBC0D6100E48A7A /* CustomSubjectCell.swift in Sources */,
+				8182FB171EBA0D73006B19CA /* SettingViewController.swift in Sources */,
 				8182FAE01EB9CD95006B19CA /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -516,6 +548,7 @@
 				8182FB091EB9CD95006B19CA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8182FB0A1EB9CD95006B19CA /* Build configuration list for PBXNativeTarget "studyTests" */ = {
 			isa = XCConfigurationList;
@@ -524,6 +557,7 @@
 				8182FB0C1EB9CD95006B19CA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8182FB0D1EB9CD95006B19CA /* Build configuration list for PBXNativeTarget "studyUITests" */ = {
 			isa = XCConfigurationList;
@@ -532,6 +566,7 @@
 				8182FB0F1EB9CD95006B19CA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
