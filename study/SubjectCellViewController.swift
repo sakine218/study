@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SubjectCellViewController: UIViewController, UITableViewDataSource, UITableViewDelegate  {
+class SubjectCellViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate  {
     
     
     @IBOutlet weak var noneLabel: UILabel!
@@ -26,10 +26,16 @@ class SubjectCellViewController: UIViewController, UITableViewDataSource, UITabl
         tableView.delegate = self
         tableView.dataSource = self
         tableView.isEditing = true
-        
+        // UILongPressGestureRecognizer宣言
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: "cellLongPressed:")
+        // UIGestureRecognizerDelegateを設定するのをお忘れなく
+        longPressRecognizer.delegate = self
+        // tableViewにrecognizerを設定
+        tableView.addGestureRecognizer(longPressRecognizer)
         }
     
     override func viewWillAppear(_ animated: Bool) {
+        colorArray = []
         subjectArray = userDefaults.array(forKey: "Subject") as? [String] ?? []
         dataArray = userDefaults.array(forKey: "Color") as? [Data] ?? []
         print(dataArray)
@@ -46,6 +52,20 @@ class SubjectCellViewController: UIViewController, UITableViewDataSource, UITabl
             noneLabel.isHidden = false
         }
         tableView.reloadData()
+    }
+    
+    func cellLongPressed(recognizer: UILongPressGestureRecognizer) {
+        
+        // 押された位置でcellのPathを取得
+        let point = recognizer.location(in: tableView)
+        let indexPath = tableView.indexPathForRow(at: point)
+        
+        if indexPath == nil {
+            
+        } else if recognizer.state == UIGestureRecognizerState.began  {
+            // 長押しされた場合の処理
+            print("長押しされたcellのindexPath:\(indexPath?.row)")
+        }
     }
     
     func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
