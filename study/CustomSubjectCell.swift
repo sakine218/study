@@ -16,6 +16,7 @@ class CustomSubjectCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        colorView.layer.cornerRadius = 12.5
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

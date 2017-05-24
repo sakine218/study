@@ -26,7 +26,8 @@ class SubjectCellViewController: UIViewController, UITableViewDataSource, UITabl
         tableView.delegate = self
         tableView.dataSource = self
         tableView.isEditing = true
-    }
+        
+        }
     
     override func viewWillAppear(_ animated: Bool) {
         subjectArray = userDefaults.array(forKey: "Subject") as? [String] ?? []
@@ -47,10 +48,6 @@ class SubjectCellViewController: UIViewController, UITableViewDataSource, UITabl
         tableView.reloadData()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        
-    }
-    
     func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         return true
     }
@@ -64,9 +61,14 @@ class SubjectCellViewController: UIViewController, UITableViewDataSource, UITabl
             colorArray.remove(at: index)
             colorArray.insert(targetColor, at: destinationIndexPath.row)
         }
+        dataArray.removeAll(keepingCapacity: true)
+        for color in colorArray {
+            let data: Data = NSKeyedArchiver.archivedData(withRootObject: color)
+            dataArray.append(data)
+        }
         userDefaults.set(subjectArray, forKey: "Subject")
+        userDefaults.set(dataArray, forKey: "Color")
         print(subjectArray)
-        userDefaults.set(colorArray, forKey: "Color")
         print(colorArray)
     }
     
@@ -79,13 +81,22 @@ class SubjectCellViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
             subjectArray.remove(at: indexPath.row)
             colorArray.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
-        }
     }
-
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let deleteButton: UITableViewRowAction = UITableViewRowAction(style: .normal, title: "削除") { (action, index) -> Void in
+            self.subjectArray.remove(at: indexPath.row)
+            self.colorArray.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+        deleteButton.backgroundColor = UIColor.red
+        
+        return [deleteButton]
+    }
     
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)

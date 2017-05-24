@@ -19,7 +19,6 @@ class AddSubjectViewController: UIViewController, UITextFieldDelegate {
     var text: String = ""
     let userDefaults = UserDefaults.standard
     var subjectArray:[String] = []
-    var colorArray:[UIColor] = []
     var dataArray:[Data] = []
     var redValue: CGFloat = 0
     var greenValue: CGFloat = 0
@@ -33,8 +32,9 @@ class AddSubjectViewController: UIViewController, UITextFieldDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         subjectArray = userDefaults.array(forKey: "Subject") as? [String] ?? []
-        colorArray = userDefaults.array(forKey: "Color") as? [UIColor] ?? []
+        dataArray = userDefaults.array(forKey: "Color") as? [Data] ?? []
         print(subjectArray)
+        print(dataArray)
     }
     
     override func didReceiveMemoryWarning() {
@@ -65,13 +65,10 @@ class AddSubjectViewController: UIViewController, UITextFieldDelegate {
             // アラート表示
             self.present(alert, animated: true, completion: nil)
         } else{
-            colorArray.append(colorView.backgroundColor!)
-            for obj in colorArray {
-                let data: Data = NSKeyedArchiver.archivedData(withRootObject: obj)
-                dataArray.append(data)
-            }
+            let data: Data = NSKeyedArchiver.archivedData(withRootObject: colorView.backgroundColor!)
+            dataArray.append(data)
             userDefaults.set(dataArray, forKey: "Color")
-            print(colorArray)
+            print(dataArray)
             text = textField.text!
             print(text)
             subjectArray.append(text)
