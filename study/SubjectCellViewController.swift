@@ -16,6 +16,7 @@ class SubjectCellViewController: UIViewController, UITableViewDataSource, UITabl
     var subjectArray:[String] = []
     var colorArray:[UIColor] = []
     var dataArray:[Data] = []
+    var pushNumber: Int = 0
     @IBOutlet weak var tableView: UITableView!
 
     override func viewDidLoad() {
@@ -27,10 +28,11 @@ class SubjectCellViewController: UIViewController, UITableViewDataSource, UITabl
         tableView.dataSource = self
         tableView.isEditing = true
         // UILongPressGestureRecognizer宣言
-        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: "cellLongPressed:")
+        let longPressRecognizer = UILongPressGestureRecognizer()
+        longPressRecognizer.addTarget(self, action: #selector(SubjectCellViewController.cellLongPressed(recognizer:)))
         // UIGestureRecognizerDelegateを設定するのをお忘れなく
         longPressRecognizer.delegate = self
-        // tableViewにrecognizerを設定
+        //tableViewにrecognizerを設定
         tableView.addGestureRecognizer(longPressRecognizer)
         }
     
@@ -55,16 +57,15 @@ class SubjectCellViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func cellLongPressed(recognizer: UILongPressGestureRecognizer) {
-        
         // 押された位置でcellのPathを取得
         let point = recognizer.location(in: tableView)
         let indexPath = tableView.indexPathForRow(at: point)
-        
         if indexPath == nil {
-            
         } else if recognizer.state == UIGestureRecognizerState.began  {
             // 長押しされた場合の処理
-            print("長押しされたcellのindexPath:\(indexPath?.row)")
+            print("長押しされたcellのindexPath:\(String(describing: indexPath!.row))")
+            pushNumber = indexPath!.row
+            performSegue(withIdentifier: "toNext", sender: indexPath)
         }
     }
     
@@ -90,6 +91,13 @@ class SubjectCellViewController: UIViewController, UITableViewDataSource, UITabl
         userDefaults.set(dataArray, forKey: "Color")
         print(subjectArray)
         print(colorArray)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if sender != nil {
+            let AddSubjectViewController = segue.destination as! AddSubjectViewController
+            AddSubjectViewController.indexPath = pushNumber
+        }
     }
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {

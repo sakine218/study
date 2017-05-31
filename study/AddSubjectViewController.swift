@@ -16,6 +16,7 @@ class AddSubjectViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var redLabel: UILabel!
     @IBOutlet weak var greenLabel: UILabel!
     @IBOutlet weak var blueLabel: UILabel!
+    @IBOutlet weak var color: UIColor!
     var text: String = ""
     let userDefaults = UserDefaults.standard
     var subjectArray:[String] = []
@@ -23,6 +24,8 @@ class AddSubjectViewController: UIViewController, UITextFieldDelegate {
     var redValue: CGFloat = 0
     var greenValue: CGFloat = 0
     var blueValue: CGFloat = 0
+    var indexPath: Int = 0
+    var colorArray: [UIColor] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,10 +36,34 @@ class AddSubjectViewController: UIViewController, UITextFieldDelegate {
     override func viewWillAppear(_ animated: Bool) {
         subjectArray = userDefaults.array(forKey: "Subject") as? [String] ?? []
         dataArray = userDefaults.array(forKey: "Color") as? [Data] ?? []
+        for obj in dataArray {
+            let color: UIColor = NSKeyedUnarchiver.unarchiveObject(with: obj) as! UIColor
+            colorArray.append(color)
+        }
         print(subjectArray)
         print(dataArray)
+        textField.text = subjectArray[indexPath]
+        colorView.backgroundColor = colorArray[indexPath]
+        color = colorArray[indexPath]
     }
     
+    extension color {
+        func rgb(){
+            var fRed : CGFloat = 0
+            var fGreen : CGFloat = 0
+            var fBlue : CGFloat = 0
+            var fAlpha: CGFloat = 0
+            if self.getRed(&fRed, green: &fGreen, blue: &fBlue, alpha: &fAlpha) {
+                redLabel = String(Int(fRed * 255.0))
+                greenLabel = String(Int(fGreen * 255.0))
+                blueLabel = String(Int(fBlue * 255.0))
+                let iAlpha = Int(fAlpha * 255.0)
+                //  (Bits 24-31 are alpha, 16-23 are red, 8-15 are green, 0-7 are blue).
+            } else {
+                // Could not extract RGBA components:
+            }
+        }
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
