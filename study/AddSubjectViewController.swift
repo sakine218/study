@@ -16,7 +16,10 @@ class AddSubjectViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var redLabel: UILabel!
     @IBOutlet weak var greenLabel: UILabel!
     @IBOutlet weak var blueLabel: UILabel!
-    @IBOutlet weak var color: UIColor!
+    @IBOutlet weak var deletButton: UIButton!
+    @IBOutlet weak var redSlider: UISlider!
+    @IBOutlet weak var greenSlider: UISlider!
+    @IBOutlet weak var blueSlider: UISlider!
     var text: String = ""
     let userDefaults = UserDefaults.standard
     var subjectArray:[String] = []
@@ -24,12 +27,14 @@ class AddSubjectViewController: UIViewController, UITextFieldDelegate {
     var redValue: CGFloat = 0
     var greenValue: CGFloat = 0
     var blueValue: CGFloat = 0
-    var indexPath: Int = 0
+    var indexPath: Int!
     var colorArray: [UIColor] = []
+    var color: UIColor!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         textField.delegate = self
+        deletButton.isHidden = true
         // Do any additional setup after loading the view.
     }
     
@@ -42,32 +47,32 @@ class AddSubjectViewController: UIViewController, UITextFieldDelegate {
         }
         print(subjectArray)
         print(dataArray)
-        textField.text = subjectArray[indexPath]
-        colorView.backgroundColor = colorArray[indexPath]
-        color = colorArray[indexPath]
-    }
-    
-    extension color {
-        func rgb(){
-            var fRed : CGFloat = 0
-            var fGreen : CGFloat = 0
-            var fBlue : CGFloat = 0
-            var fAlpha: CGFloat = 0
-            if self.getRed(&fRed, green: &fGreen, blue: &fBlue, alpha: &fAlpha) {
-                redLabel = String(Int(fRed * 255.0))
-                greenLabel = String(Int(fGreen * 255.0))
-                blueLabel = String(Int(fBlue * 255.0))
-                let iAlpha = Int(fAlpha * 255.0)
-                //  (Bits 24-31 are alpha, 16-23 are red, 8-15 are green, 0-7 are blue).
-            } else {
-                // Could not extract RGBA components:
-            }
+        if indexPath != nil {
+            textField.text = subjectArray[indexPath]
+            deletButton.isHidden = false
+            colorView.backgroundColor = colorArray[indexPath]
+            color = colorArray[indexPath]
+            redValue = convertToRGB(color).red * 255
+            greenValue = convertToRGB(color).green * 255
+            blueValue = convertToRGB(color).blue * 255
+            redLabel.text = "".appendingFormat("%.0f", redValue)
+            greenLabel.text = "".appendingFormat("%.0f", greenValue)
+            blueLabel.text = "".appendingFormat("%.0f", blueValue)
+            redSlider.value = Float(redValue)
+            greenSlider.value = Float(greenValue)
+            blueSlider.value = Float(blueValue)
         }
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func convertToRGB(_ color: UIColor) -> (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
+        
+        let components = color.cgColor.components! // UIColorをCGColorに変換し、RGBとAlphaがそれぞれCGFloatで配列として取得できる
+        return (red: components[0], green: components[1], blue: components[2], alpha: components[3])
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
